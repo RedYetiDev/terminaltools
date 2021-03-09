@@ -1,0 +1,41 @@
+{
+  "name": "terminaltools",
+  "version": "1.0.0",
+  "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
+  "main": "tools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redyetidev/terminaltools"
+  },
+  "keywords": [
+    "image",
+    "render",
+    "video",
+    "loader",
+    "player",
+    "media",
+    "mov",
+    "mp4",
+    "jpg",
+    "jpeg",
+    "ffmpeg",
+    "jimp",
+    "play",
+    "videos",
+    "images",
+    "picture",
+    "pictures",
+    "terminal",
+    "tools",
+    "terminaltools"
+  ],
+  "author": "RedYetiDev",
+  "license": "MIT",
+  "dependencies": {
+    "ffmpeg": "^0.0.4",
+    "jimp": "^0.16.1"
+  }
+}
