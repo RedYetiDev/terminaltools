@@ -2,11 +2,19 @@
 Welcome to the terminal tools package. This package allows you to do some special tricks within your console screen. Currently, you can do the following:
 
 1. Render Images
+
 ![Render Images](https://user-images.githubusercontent.com/38299977/110391296-47bb2080-8035-11eb-83f2-43d66d174dbe.png)
-2. Play Videos (Still a little glitchy)
-![Play Videos](https://user-images.githubusercontent.com/38299977/110498207-1f7b0280-80c5-11eb-98d8-de332108c39f.gif)
+
+2. Play Videos (Glitches Fixed!)
+
+![Play Videos (Glitches Fixed!)](https://user-images.githubusercontent.com/38299977/110550349-828a8a80-8101-11eb-89cb-c5e98ad2750a.gif)
+
 3. Create a loader
+
 ![Create a loader](https://user-images.githubusercontent.com/38299977/110504405-20af2e00-80cb-11eb-800d-fc12b846ac6a.gif)
+
+![pinwheel](https://user-images.githubusercontent.com/38299977/110550579-ef9e2000-8101-11eb-9e4f-ff1cae9bce96.gif)
+
 
 ## Installation
 First, install the `terminaltools` package, using the following command
@@ -59,20 +67,35 @@ The `runall` function runs both of the functions.
 
 ##### Example
 ```js
-runall("sample.mp4")
+await tools.video.runall("sample.mp4")
 ```
 
 ### Loader
-To create a loader, first create a new instance of the `loader` class
+There are currently 2 loaders available.
+#### 1. line
+First, create a new instance of `loader.line`
 ```js
-const loader = new tools.loader()
+var line = new tools.loader.line()
 ```
-Once a loader has been created, you can start and stop it using the `start()` and `end()` function. This is usefull when you have long functions with no output.
+Then, you can start and end the loader using `start()` and `stop()`
 
-#### Example
+#### 2. pinwheel
+First, create a new instance of `loader.pinwheel`
 ```js
-const loader = new tools.loader()
-loader.start()
-"Run a long function here"
-loader.end()
+var line = new tools.loader.pinwheel()
+```
+Then, you can start and end the loader using `start()` and `stop()`
+
+#### Examples
+```js
+var line = new tools.loader.line()
+line.start()
+"FUNCTION FUNCTION FUNCTION FUNCTION"
+line.end()
+```
+```js
+var pinwheel = new tools.loader.pinwheel()
+pinwheel.start()
+"FUNCTION FUNCTION FUNCTION FUNCTION"
+pinwheel.end()
 ```

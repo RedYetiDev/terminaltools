@@ -1,10 +1,10 @@
 var ffmpeg = require("ffmpeg")
-var image = require("./image")
 var fs = require("fs")
 var path = require("path")
-var sec;
-var p = process;
+var specialrender = require("./lib/specialimage")
+var fps;
 const delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
+// Video Rendering
 async function framify(video) {
   return new Promise(async(resolve, reject) => {
   await fs.rmdirSync("frames", { recursive: true });
@@ -12,7 +12,7 @@ async function framify(video) {
   try {
           var process = new ffmpeg(video);
           process.then(function (video) {
-              sec = video.metadata.seconds
+              fps = video.metadata.fps
               video.setVideoSize(p.stdout.columns + "x" + p.stdout.rows, true, false)
               video.fnExtractFrameToJPG("frames", {
                   every_n_frames : 1
@@ -28,7 +28,8 @@ async function framify(video) {
       }
     })
 }
-async function render() {
+async function render(frames) {
+  fps = fps || frames || 30;
   return new Promise(async(resolve, reject) => {
     var frames = await fs.readdirSync("frames")
     var fn = frames[0].split(/_\d+.jpg/)[0] + "_"
@@ -37,15 +38,16 @@ async function render() {
       frames[i] = path.join("frames", item)
     });
     for (var i in frames) {
-      var frame = await image(frames[i])
-      console.log(frame)
-      await delay(30)
+      var frame = await specialrender(frames[i])
+      process.stdout.write("\033[0;0H" + frame)
+      await delay(fps)
     }
     return resolve("Rendered")
   })
 }
+// Full
 async function full(video) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     await framify(video)
     await render()
   })

@@ -1,5 +1,7 @@
 const delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
-class Loader {
+const image = require("./image")
+var ansiEscapes = require('ansi-escapes');
+class Line {
   constructor() {
     this.loader = null;
   }
@@ -20,4 +22,42 @@ class Loader {
     clearInterval(this.loader)
   }
 }
-module.exports = Loader
+class Pinwheel {
+  constructor() {
+    this.loader = null;
+    this.rl = null
+  }
+  async start() {
+    this.rl = readline.createInterface({
+      terminal: true,
+      input: process.stdin,
+      output: process.stdout
+    })
+    var rl = this.rl
+    var l1 = await image(__dirname + "/loaders/pinwheel_1.png")
+    var l2 = await image(__dirname + "/loaders/pinwheel_2.png")
+    var l3 = await image(__dirname + "/loaders/pinwheel_3.png")
+    var l4 = await image(__dirname + "/loaders/pinwheel_4.png")
+    this.loader = setInterval(async function () {
+      rl.write(ansiEscapes.eraseLines(process.stdout.rows))
+      console.log(l1)
+      await delay(200)
+      rl.write(ansiEscapes.eraseLines(process.stdout.rows))
+      console.log(l2)
+      await delay(200)
+      rl.write(ansiEscapes.eraseLines(process.stdout.rows))
+      console.log(l3)
+      await delay(200)
+      rl.write(ansiEscapes.eraseLines(process.stdout.rows))
+      console.log(l4)
+    }, (600));
+  }
+  end() {
+    clearInterval(this.loader)
+    this.rl.output.end();
+    this.rl.pause();
+    this.rl.close();
+  }
+}
+module.exports.line = Line
+module.exports.pinwheel = Pinwheel
