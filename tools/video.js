@@ -13,7 +13,6 @@ async function framify(video) {
           var process = new ffmpeg(video);
           process.then(function (video) {
               fps = video.metadata.fps
-              video.setVideoSize(p.stdout.columns + "x" + p.stdout.rows, true, false)
               video.fnExtractFrameToJPG("frames", {
                   every_n_frames : 1
               }, function() {

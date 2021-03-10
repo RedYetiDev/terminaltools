@@ -1,6 +1,6 @@
 {
   "name": "terminaltools",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "scripts": {
