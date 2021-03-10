@@ -1,6 +1,6 @@
 {
   "name": "terminaltools",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "scripts": {
@@ -41,7 +41,8 @@
     "ansi-escapes": "^4.3.1",
     "cli-frames": "^2.2.10",
     "ffmpeg": "^0.0.4",
-    "jimp": "^0.16.1"
+    "jimp": "^0.16.1",
+    "terminaltools": "^1.5.1"
   },
   "homepage": "https://github.com/redyetidev/terminaltools"
 }

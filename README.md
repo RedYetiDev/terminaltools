@@ -43,7 +43,7 @@ console.log(image)
 ```
 
 ### Playing Videos
-To play a video, there are 3 different functions. All functions below are prefixed with `video`. The reason for 3 functions is that "framifying" takes time depending on the video length, and you might already have frames ready for rendering.
+Video playing contains 4 different functions. The first 2 or `framify` and `render`. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run `framify`. The third function is called `runall`, and it runs `framify`, then `render`. Now, the 4th function is a special version of `render` called `advrender`.
 
 #### 1. framify
 The `framify` function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. ***NOTE***: Please create a `frames` folder in the current working directory before running.
@@ -69,6 +69,9 @@ The `runall` function runs both of the functions.
 ```js
 await tools.video.runall("sample.mp4")
 ```
+
+#### 4. advrender
+The `advrender` function renders the frames in 2 parts, first it pre-renders ***ALL*** the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during
 
 ### Loader
 There are currently 2 loaders available.
