@@ -1,6 +1,6 @@
 {
   "name": "terminaltools",
-  "version": "1.6.0",
+  "version": "1.7.5",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "scripts": {
@@ -30,7 +30,21 @@
     "pictures",
     "terminal",
     "tools",
-    "terminaltools"
+    "terminaltools",
+    "rendering",
+    "Telnet",
+    "Server",
+    "net",
+    "readline",
+    "dots",
+    "loading",
+    "loader",
+    "ascii",
+    "server",
+    "client",
+    "ascii star wars",
+    "towel.blinkenlights.nl",
+    "A lot of keywords"
   ],
   "author": "RedYetiDev <RedYetiDev@gmail.com> (https://RedYetiDev.github.io)",
   "license": "MIT",
@@ -39,10 +53,7 @@
   },
   "dependencies": {
     "ansi-escapes": "^4.3.1",
-    "cli-frames": "^2.2.10",
     "ffmpeg": "^0.0.4",
-    "jimp": "^0.16.1",
-    "terminaltools": "^1.5.1"
-  },
-  "homepage": "https://github.com/redyetidev/terminaltools"
+    "jimp": "^0.16.1"
+  }
 }
