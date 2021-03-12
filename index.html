@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Terminal Tools</title>
+    <script>hljs.highlightAll();</script>
+    <script type="text/javascript">
+    $(window).on('beforeunload', function() {
+      $('body').hide();
+      $(window).scrollTop(0);
+    });
+    </script>
+  </head>
+  <body style="overflow: hidden">
+    <style media="screen">
+      img {
+        width: 500px
+      }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#main">
+          <i class="bi bi-terminal"></i>
+          Terminal Tools
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#installing">Installing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#require">Requiring</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#using" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Using
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#images">Images</a></li>
+                <li><a class="dropdown-item" href="#videos">Videos</a></li>
+                <li><a class="dropdown-item" href="#loader">Loader</a></li>
+                <li><a class="dropdown-item" href="#telnet">TelNet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main" class="bg-dark min-vh-100 text-center d-flex flex-column justify-content-center text-light">
+      <h1>Terminal Tools</h1>
+      <p>Tools for <strong>YOUR</strong> Terminal</p>
+      <span><button class="btn btn-primary" name="button" onclick="con('#installing')">Begin</button></span>
+    </div>
+    <div class="bg-dark min-vh-100 text-center d-flex flex-column justify-content-center text-light">
+      <div id="installing" class="min-vh-100">
+        <br><br>
+        <h1 class="text-light">Installing Terminal Tools</h1>
+        <p>To install terminal tools, you must first download the package</p>
+        <span><code>npm i terminaltools</code><br><br><button onclick="con('#require')" class="btn btn-primary">Continue</button></span>
+      </div>
+      <script type="text/javascript">
+        async function con(scroll) {
+          $("html, body").animate({ scrollTop: $(scroll).offset().top}, 2500);
+          location.href = location.href.split("#")[0] + scroll
+          if (scroll == "#using") {
+            document.body.style.overflow = "scroll"
+          } else {
+            document.body.style.overflow = "hidden"
+          }
+        }
+        if (location.href.split("#")[1] == "using") {
+          document.body.style.overflow = "scroll"
+        }
+      </script>
+      <div class="min-vh-100 bg-light text-dark" id="require">
+        <br><br>
+        <h2>Now, <code>require</code> Terminal Tools in your script</h2>
+        <pre><code>
+const tools = require("terminaltools")
+        </code></pre>
+        <br><br>
+        <span><button class="btn btn-primary" name="button" onclick="con('#using')">Continue</button></span>
+      </div>
+      <div id="using" class="min-vh-100 text-light d-flex flex-column justify-content-center" style="overflow: scroll">
+        <br><br>
+        <h1>Using Terminal Tools</h1>
+        <br><br>
+        <p>
+          <img src="https://user-images.githubusercontent.com/38299977/110391296-47bb2080-8035-11eb-83f2-43d66d174dbe.png" alt="Render Images" />
+          <img src="https://user-images.githubusercontent.com/38299977/110550349-828a8a80-8101-11eb-89cb-c5e98ad2750a.gif" alt="Play Videos (Glitches Fixed!)" />
+          <img src="https://user-images.githubusercontent.com/38299977/110504405-20af2e00-80cb-11eb-800d-fc12b846ac6a.gif" alt="Create a loader" />
+          <img src="https://user-images.githubusercontent.com/38299977/110550579-ef9e2000-8101-11eb-9e4f-ff1cae9bce96.gif" alt="pinwheel" />
+          <img src="https://user-images.githubusercontent.com/38299977/110808153-baa0e300-8251-11eb-9c55-75120be2880a.gif" alt="loader-dots" />
+          <img src="https://user-images.githubusercontent.com/38299977/110807660-449c7c00-8251-11eb-8501-275960d8b9f3.png" alt="Connect to a server" />
+        </p>
+        <h2 id="images">Images</h2>
+        <p>
+          To render images, use the <code>tools.image</code> function, like the one below
+          <br><br>
+          <pre><code>var rendered = await tools.image("image.png")</code></pre>
+          <br><br>
+          You can even use URLs!
+          <br><br>
+          <pre><code>var rendered = await tools.image("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")</code></pre>
+          <br><br>
+          Once rendered, the image can be seen using <pre><code>console.log(rendered)</code></pre>
+        </p>
+        <h2 id="videos">Videos</h2>
+          <p>Video playing contains 4 different functions. The first 2 or <code>framify</code> and <code>render</code>. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run <code>framify</code>. The third function is called <code>runall</code>, and it runs <code>framify</code>, then <code>render</code>. Now, the 4th function is a special version of <code>render</code> called <code>advrender</code>. (Setting an FPS on the <code>render</code> and <code>advrender</code> functions are optional.)</p>
+
+          <h4 id="framify">1. framify</h4>
+          <p>The <code>framify</code> function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. <strong><em>NOTE</em></strong>: Please create a <code>frames</code> folder in the current working directory before running.</p>
+
+          <h5 id="example-1">Example</h5>
+          <p><pre><code>
+await tools.video.framify("sample.mp4")
+          </code></pre>
+          <br>
+          (You then end up with a folder named <code>frames</code> in the current working directory)</p>
+
+          <h4 id="render">2. render</h4>
+          <p>The <code>render</code> function takes no parameter and <strong><em>MUST</em></strong> be run from the same directory that contains the <code>frames</code> folder.</p>
+
+          <h5 id="example-2">Example</h5>
+          <p><pre><code>
+await tools.video.render(/* FPS Optional */)
+          </code></pre></p>
+
+          <h4 id="runall">3. runall</h4>
+          <p>The <code>runall</code> function runs both of the functions.</p>
+
+          <h5 id="example-3">Example</h5>
+          <p><pre><code>
+await tools.video.runall("sample.mp4")
+          </code></pre></p>
+
+          <h4 id="advrender">4. advrender</h4>
+          <p>The <code>advrender</code> function renders the frames in 2 parts, first it pre-renders <strong><em>ALL</em></strong> the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during</p>
+
+          <h5 id="examples">Examples</h5>
+          <p><pre><code>
+await tools.video.advrender(/* FPS Optional */)
+          </code></pre></p>
+          <h2 id="loader">Loader</h2>
+            <p>There are currently 2 loaders available.
+            <h4> 1. line </h4>
+            First, create a new instance of <code>loader.line</code>
+            <pre><code>
+var line = new tools.loader.line()
+            </code></pre>
+            Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+
+            <h4 id="pinwheel">2. pinwheel</h4>
+            <p>First, create a new instance of <code>loader.pinwheel</code>
+            <pre><code>
+var line = new tools.loader.pinwheel()
+            </code></pre>
+            Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+
+            <h4 id="dots">3. Dots</h4>
+            <p>First, create a new instance of <code>loader.dots</code>
+            <pre><code>
+var line = new tools.loader.dots()
+            </code></pre>
+            Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+
+            <h4 id="examples-1">Examples</h4>
+            <p><pre><code>
+var line = new tools.loader.line()
+line.start()
+"FUNCTION FUNCTION FUNCTION FUNCTION"
+line.end()
+            </code></pre>
+            <pre><code>
+var pinwheel = new tools.loader.pinwheel()
+pinwheel.start()
+"FUNCTION FUNCTION FUNCTION FUNCTION"
+pinwheel.end()
+            </code></pre></p>
+
+            <p><pre><code>
+var dots = new tools.loader.dots()
+dots.start()
+"FUNCTION FUNCTION FUNCTION FUNCTION"
+dots.end()
+            </code></pre></p>
+
+            <h2 id="telnet">TelNet</h2>
+            <p>To connect a server, first make a new instance of the <code>server</code> class
+            <pre><code>
+var Client = new tools.server()
+            </code></pre>
+            Next, connect to the server using
+            <pre><code>
+Client.connect(host, ip)
+            </code></pre>
+            If the host is not specified, it will default to <code>towel.blinkenlights.nl</code>If the port is not specifed, it will default to <code>23</code></p>
+
+            <p>Now, you can write messages using the <code>write</code> function
+            <pre><code>
+Client.write("Hello!")
+            </code></pre></p>
+      </div>
+    </div>
+  </body>
+</html>
