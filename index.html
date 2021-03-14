@@ -18,7 +18,7 @@
     });
     </script>
   </head>
-  <body style="overflow: hidden">
+  <body>
     <style media="screen">
       img {
         width: 500px
@@ -99,27 +99,19 @@
     </div>
     <div class="bg-dark min-vh-100 text-center d-flex flex-column justify-content-center text-light">
       <div id="installing" class="min-vh-100">
-        <br><br><br>
+        <br><br>
         <h1 class="text-light">Installing Terminal Tools</h1>
         <p>To install terminal tools, you must first download the package</p>
         <span><code>npm i terminaltools</code><br><br><button onclick="con('#require')" class="btn btn-primary">Continue</button></span>
       </div>
       <script type="text/javascript">
         async function con(scrl) {
-          $("html, body").animate({ scrollTop: $(scrl).offset().top}, 2500);
+          $("html, body").animate({ scrollTop: $(scrl).offset().top - $("#navbar").height()}, 2500);
           location.href = location.href.split("#")[0] + scrl
-          if (scrl == "#using" || scrl == "#videos" || scrl == "#images" || scrl == "#loader" || scrl == "#telnet") {
-            document.body.style.overflow = "scroll"
-          } else {
-            document.body.style.overflow = "hidden"
-          }
-        }
-        if (location.href.split("#")[1] == "using" || location.href.split("#")[1] == "images" || location.href.split("#")[1] == "videos" || location.href.split("#")[1] == "loader" || location.href.split("#")[1] == "telnet") {
-          document.body.style.overflow = "scroll"
         }
       </script>
       <div class="min-vh-100 bg-light text-dark" id="require">
-        <br><br><br>
+        <br><br>
         <h2>Now, <code>require</code> Terminal Tools in your script</h2>
         <pre><code>
 const tools = require("terminaltools")
@@ -128,7 +120,7 @@ const tools = require("terminaltools")
         <span><button class="btn btn-primary" name="button" onclick="con('#using')">Continue</button></span>
       </div>
       <div id="using" class="min-vh-100 text-light d-flex flex-column justify-content-center" style="overflow: scroll">
-        <br><br><br>
+        <br><br>
         <h1>Using Terminal Tools</h1>
         <br><br>
         <p>
