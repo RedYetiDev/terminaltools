@@ -22,6 +22,10 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 ![Connect to a server](https://user-images.githubusercontent.com/38299977/110807660-449c7c00-8251-11eb-8501-275960d8b9f3.png)
 
+5. Mute a function (No image, because no output!)
+
+6. Minify and compile JavaScript Files
+
 ## Installation
 First, install the `terminaltools` package, using the following command
 ```sh
@@ -96,14 +100,14 @@ Then, you can start and end the loader using `start()` and `stop()`
 #### 2. pinwheel
 First, create a new instance of `loader.pinwheel`
 ```js
-var line = new tools.loader.pinwheel()
+var pinwheel = new tools.loader.pinwheel()
 ```
 Then, you can start and end the loader using `start()` and `stop()`
 
 #### 3. Dots
 First, create a new instance of `loader.dots`
 ```js
-var line = new tools.loader.dots()
+var dots = new tools.loader.dots()
 ```
 Then, you can start and end the loader using `start()` and `stop()`
 
@@ -143,4 +147,36 @@ If the host is not specified, it will default to `towel.blinkenlights.nl`, and i
 Now, you can write messages using the `write` function
 ```js
 Client.write("Hello!")
+```
+
+### Muting a function
+You can mute a function, if you don't want the output to be displayed to the user. You can also write output during the function.
+To mute a function, run the `muter.mute` function. (Replace `function` with the function name)
+```js
+function run() {
+  console.log("Ran!")
+}
+tools.muter.mute(run)
+```
+Or, you can create new function
+```js
+tools.muter.mute(function() {
+  console.log("Ran!")
+})
+```
+Both of the functions will have **NO** output.
+
+If you have a longer function, and want to display some kind of message while it is running, use the `muter.write` function.
+```js
+tools.muter.write("Written!")
+```
+You **WILL** see the output of that command.
+
+### Minifying and combining JavaScript files
+To minify javascript, use the `tools.minify` function
+```js
+tools.minify([
+  "File Path",
+  "File Path"
+])
 ```
