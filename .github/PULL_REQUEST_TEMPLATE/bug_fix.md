@@ -1,7 +1,7 @@
 ---
-name: Bug report
-about: Report an issue with Terminal Tools
-title: '[BUG]'
+name: Bug Fix
+about: Submit a bug fix
+title: 'Fix a bug'
 labels: bug, Awaiting Validation
 assignees: ''
 
@@ -27,6 +27,9 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. Linux, MacOS, Windows]
  - NodeJS Version [e.g. 14, v15.8.0]
  - Package Version (If applicable) [e.g. 22]
+
+**Describe your change**
+A clear description of the change
 
 **Additional context**
 Add any other context about the problem here.
