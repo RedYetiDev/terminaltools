@@ -1,6 +1,6 @@
 {
-  "name": "terminaltools",
-  "version": "1.9.0",
+  "name": "@redyetidev/terminaltools",
+  "version": "1.9.1",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "scripts": {

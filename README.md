@@ -26,6 +26,13 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 6. Minify and compile JavaScript Files
 
+7. Create a Matrix
+
+![Create a Matrix](https://user-images.githubusercontent.com/38299977/111515495-3bb41a80-8729-11eb-9b7b-b89a50fdcd81.gif)
+8. Create a snowstorm
+
+![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
+
 ## Installation
 First, install the `terminaltools` package, using the following command
 ```sh
@@ -179,4 +186,20 @@ tools.minify([
   "File Path",
   "File Path"
 ])
+```
+
+### Rendering a Matrix
+To render a matrix, use the `tools.matrix` commands, there are 2 commands, which are `start()` and `stop()`.
+
+```js
+tools.matrix.start()
+tools.matrix.stop()
+```
+
+### Rendering a snowstorm
+To render a matrix, use the `tools.snow` commands, there are 2 commands, which are `start()` and `stop()`.
+
+```js
+tools.snow.start()
+tools.snow.stop()
 ```
