@@ -1,6 +1,6 @@
 {
   "name": "terminaltools",
-  "version": "1.8.5",
+  "version": "1.9.0",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "scripts": {
@@ -44,7 +44,9 @@
     "client",
     "ascii star wars",
     "towel.blinkenlights.nl",
-    "A lot of keywords"
+    "A lot of keywords",
+    "Snow",
+    "Matrix"
   ],
   "author": "RedYetiDev <RedYetiDev@gmail.com> (https://RedYetiDev.github.io)",
   "license": "MIT",
