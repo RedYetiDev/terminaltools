@@ -197,7 +197,7 @@ tools.matrix.stop()
 ```
 
 ### Rendering a snowstorm
-To render a matrix, use the `tools.snow` commands, there are 2 commands, which are `start()` and `stop()`.
+To render a snowstorm, use the `tools.snow` commands, there are 2 commands, which are `start()` and `stop()`.
 
 ```js
 tools.snow.start()
