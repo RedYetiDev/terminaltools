@@ -1,11 +1,7 @@
-const delay = (ms) => {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms)
-  }
-)
-}
+const delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms))}
+// Matrix
 var domatrix;
-async function start() {
+async function matrix(letters=null) {
   domatrix = true
   var lines = process.stdout.rows
   var columns = process.stdout.columns
@@ -16,7 +12,7 @@ async function start() {
     var line = 0
     await delay(100)
     var random_col = Math.floor(Math.random() * columns)
-    var letter= Math.floor(Math.random() * 2)
+    var letter = Math.floor(Math.random() * 2)
     cols[random_col] = 0;
     for (col in cols) {
       var rnum = Math.floor(Math.random() * 20);
@@ -52,5 +48,28 @@ async function start() {
   }
 }
 
-module.exports.start = start
-module.exports.stop = () => {domatrix = false}
+// Snowing
+
+var C = process.stdout.columns
+var a = [];
+var dosnow;
+async function snow() {
+  dosnow = true
+  process.stdout.write("\033[2J")
+  while (dosnow == true) {
+    a[Math.floor(Math.random() * C)] = 0;
+    a.forEach(function(o, x) {
+      if (o != undefined) {
+        a[x]++;
+        process.stdout.write("\033[" + o + ";" + x + "H \033[" + a[x] + ";" + x + "H❃ \033[0;0H")
+      }
+    });
+    await delay(100)
+  }
+}
+module.exports.snow = snow
+module.exports.matrix = matrix
+module.exports.stop = () => {
+  dosnow = false
+  domatrix = false
+}

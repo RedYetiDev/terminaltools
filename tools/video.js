@@ -69,6 +69,32 @@ async function advrender(frames) {
     return resolve("Rendered")
   })
 }
+async function buffer(video, lpf) {
+  if (!video) {
+    throw Error("You must specify a video")
+  }
+  if (!lpf) {
+    console.warn("lpf is not specifed, deaulting to 100.");
+  }
+  var framebuffers = []
+  var framenum = []
+  var {stdout} = await exec(`ffmpeg -i ${video} -f null /dev/null 2>&1| grep "frame=  "`)
+  framenum.length = parseInt(stdout.split("frame=  ")[1].split(" fps")[0])
+  framenum.fill("",0,(framenum.length - 1))
+  for (var index in framenum) {
+    if (index + 1 < framenum.length) {
+      var { stdout } = await exec(`ffmpeg -i ${video} -filter:v select="gte(n\\,${index + 1})" -vframes 1 -vcodec png -f rawvideo pipe:1`, {
+        encoding: "arraybuffer",
+      })
+      framebuffers.push(stdout)
+    }
+  }
+  for (var i in framebuffers) {
+    var frame = await read(framebuffers[i])
+    process.stdout.write("\033[0;0H" + frame)
+    await delay(lpf || 100)
+  }
+}
 // Full
 async function full(video) {
   return new Promise(async(resolve, reject) => {
@@ -80,3 +106,4 @@ module.exports.render = render
 module.exports.advrender = advrender
 module.exports.framify = framify
 module.exports.runall = full
+module.exports.buffer_render = buffer

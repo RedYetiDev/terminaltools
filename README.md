@@ -26,12 +26,15 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 6. Minify and compile JavaScript Files
 
-7. Create a Matrix
+7. The `fun` command
 
-![Create a Matrix](https://user-images.githubusercontent.com/38299977/111515495-3bb41a80-8729-11eb-9b7b-b89a50fdcd81.gif)
-8. Create a snowstorm
+  1. Create a Matrix
 
-![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
+  ![Create a Matrix](https://user-images.githubusercontent.com/38299977/111515495-3bb41a80-8729-11eb-9b7b-b89a50fdcd81.gif)
+
+  2. Create a snowstorm
+
+  ![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
 
 ## Installation
 First, install the `terminaltools` package, using the following command
@@ -61,6 +64,7 @@ console.log(image)
 
 ### Playing Videos
 Video playing contains 4 different functions. The first 2 or `framify` and `render`. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run `framify`. The third function is called `runall`, and it runs `framify`, then `render`. Now, the 4th function is a special version of `render` called `advrender`. (Setting an FPS on the `render` and `advrender` functions are optional.)
+***NOTE*** Using the ***NEW*** `buffer` function, none of the above is required.
 
 #### 1. framify
 The `framify` function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. ***NOTE***: Please create a `frames` folder in the current working directory before running.
@@ -94,6 +98,15 @@ The `advrender` function renders the frames in 2 parts, first it pre-renders ***
 ```js
 await tools.video.advrender(/* FPS Optional */)
 ```
+
+#### 5. buffer
+  The `buffer` function is a special, new function that does **NOT** require framifying. The `buffer` function uses the `ffmpeg` command directly and outputs it into `arraybuffers`. This rendering method has the parameter `lpf`, which is needed due to the increased frame speed. The `lpf` parameter stands for `Length Per Frame`, it is in milliseconds, and `fps` will not work. It also takes the video as the first parameter.
+
+##### Examples
+```js
+tools.buffer("sample.mp4",100)
+```
+
 
 ### Loader
 There are currently 2 loaders available.
@@ -188,18 +201,7 @@ tools.minify([
 ])
 ```
 
-### Rendering a Matrix
-To render a matrix, use the `tools.matrix` commands, there are 2 commands, which are `start()` and `stop()`.
+### The `fun` commands
+The `fun` commands are fun little tricks, there is a `fun.matrix()` function and a `fun.snow()` function. Both can be stopped with `fun.stop()`.
 
-```js
-tools.matrix.start()
-tools.matrix.stop()
-```
-
-### Rendering a snowstorm
-To render a snowstorm, use the `tools.snow` commands, there are 2 commands, which are `start()` and `stop()`.
-
-```js
-tools.snow.start()
-tools.snow.stop()
-```
+The `fun.snow()` function creates a snowstorm, and the `fun.matrix()` creates a matrix (not the math kind.)
