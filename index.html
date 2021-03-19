@@ -1137,120 +1137,120 @@ const tools = require("terminaltools")
                 </span>
                 <br>
                 <article class="markdown-body entry-content container-lg bg-light" itemprop="text">
-                  <h2>
-                  <a id="user-content-using" class="anchor" href="#using" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using</h2>
-                  <p>The following information assumes you have the following code in your scripts</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-s1">tools</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"terminaltools"</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-rendering-images" class="anchor" href="#rendering-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rendering Images</h3>
-                  <p>To render an image, you should use the <code>image</code> function. The function takes 1 parameter, which is the path to the image. The function is <a href="https://www.merriam-webster.com/dictionary/asynchronous" rel="nofollow">asynchronous</a>. and returns the image as a <code>String</code>. After running the function, you can display the image using <code>console.log</code>. (You can use a URL for this function)</p>
-                  <h4>
-                  <a id="user-content-example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h4>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">image</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">image</span><span class="pl-kos">(</span><span class="pl-s">"image.png"</span><span class="pl-kos">)</span>
-                  <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">image</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-playing-videos" class="anchor" href="#playing-videos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Playing Videos</h3>
-                  <p>Video playing contains 4 different functions. The first 2 or <code>framify</code> and <code>render</code>. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run <code>framify</code>. The third function is called <code>runall</code>, and it runs <code>framify</code>, then <code>render</code>. Now, the 4th function is a special version of <code>render</code> called <code>advrender</code>. (Setting an FPS on the <code>render</code> and <code>advrender</code> functions are optional.)
-                  <em><strong>NOTE</strong></em> Using the <em><strong>NEW</strong></em> <code>buffer</code> function, none of the above is required.</p>
-                  <h4>
-                  <a id="user-content-1-framify" class="anchor" href="#1-framify" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. framify</h4>
-                  <p>The <code>framify</code> function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. <em><strong>NOTE</strong></em>: Please create a <code>frames</code> folder in the current working directory before running.</p>
-                  <h5>
-                  <a id="user-content-example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">framify</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">)</span></pre></div>
-                  <p>(You then end up with a folder named <code>frames</code> in the current working directory)</p>
-                  <h4>
-                  <a id="user-content-2-render" class="anchor" href="#2-render" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. render</h4>
-                  <p>The <code>render</code> function takes no parameter and <em><strong>MUST</strong></em> be run from the same directory that contains the <code>frames</code> folder.</p>
-                  <h5>
-                  <a id="user-content-example-2" class="anchor" href="#example-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">render</span><span class="pl-kos">(</span><span class="pl-c">/* FPS Optional */</span><span class="pl-kos">)</span></pre></div>
-                  <h4>
-                  <a id="user-content-3-runall" class="anchor" href="#3-runall" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. runall</h4>
-                  <p>The <code>runall</code> function runs both of the functions.</p>
-                  <h5>
-                  <a id="user-content-example-3" class="anchor" href="#example-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">runall</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">)</span></pre></div>
-                  <h4>
-                  <a id="user-content-4-advrender" class="anchor" href="#4-advrender" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. advrender</h4>
-                  <p>The <code>advrender</code> function renders the frames in 2 parts, first it pre-renders <em><strong>ALL</strong></em> the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during</p>
-                  <h5>
-                  <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h5>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">advrender</span><span class="pl-kos">(</span><span class="pl-c">/* FPS Optional */</span><span class="pl-kos">)</span></pre></div>
-                  <h4>
-                  <a id="user-content-5-buffer" class="anchor" href="#5-buffer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. buffer</h4>
-                  <p>The <code>buffer</code> function is a special, new function that does <strong>NOT</strong> require framifying. The <code>buffer</code> function uses the <code>ffmpeg</code> command directly and outputs it into <code>arraybuffers</code>. This rendering method has the parameter <code>lpf</code>, which is needed due to the increased frame speed. The <code>lpf</code> parameter stands for <code>Length Per Frame</code>, it is in milliseconds, and <code>fps</code> will not work. It also takes the video as the first parameter.</p>
-                  <h5>
-                  <a id="user-content-examples-1" class="anchor" href="#examples-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h5>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">buffer</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">,</span><span class="pl-c1">100</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-loader" class="anchor" href="#loader" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loader</h3>
-                  <p>There are currently 2 loaders available.</p>
-                  <h4>
-                  <a id="user-content-1-line" class="anchor" href="#1-line" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. line</h4>
-                  <p>First, create a new instance of <code>loader.line</code></p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">line</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">line</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
-                  <h4>
-                  <a id="user-content-2-pinwheel" class="anchor" href="#2-pinwheel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. pinwheel</h4>
-                  <p>First, create a new instance of <code>loader.pinwheel</code></p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">pinwheel</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">pinwheel</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
-                  <h4>
-                  <a id="user-content-3-dots" class="anchor" href="#3-dots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Dots</h4>
-                  <p>First, create a new instance of <code>loader.dots</code></p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">dots</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">dots</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
-                  <h4>
-                  <a id="user-content-examples-2" class="anchor" href="#examples-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h4>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">line</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">line</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s1">line</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
-                  <span class="pl-s1">line</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">pinwheel</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">pinwheel</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s1">pinwheel</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
-                  <span class="pl-s1">pinwheel</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">dots</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">dots</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s1">dots</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-                  <span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
-                  <span class="pl-s1">dots</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-connect-to-a-server" class="anchor" href="#connect-to-a-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connect to a server</h3>
-                  <p>To connect a server, first make a new instance of the <code>server</code> class</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-v">Client</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">server</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
-                  <p>Next, connect to the server using</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-v">Client</span><span class="pl-kos">.</span><span class="pl-en">connect</span><span class="pl-kos">(</span><span class="pl-s1">host</span><span class="pl-kos">,</span> <span class="pl-s1">ip</span><span class="pl-kos">)</span></pre></div>
-                  <p>If the host is not specified, it will default to <code>towel.blinkenlights.nl</code>, and if the port is not specifed, it will default to <code>23</code></p>
-                  <p>Now, you can write messages using the <code>write</code> function</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-v">Client</span><span class="pl-kos">.</span><span class="pl-en">write</span><span class="pl-kos">(</span><span class="pl-s">"Hello!"</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-muting-a-function" class="anchor" href="#muting-a-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Muting a function</h3>
-                  <p>You can mute a function, if you don't want the output to be displayed to the user. You can also write output during the function.
-                  To mute a function, run the <code>muter.mute</code> function. (Replace <code>function</code> with the function name)</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">run</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-                    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"Ran!"</span><span class="pl-kos">)</span>
-                  <span class="pl-kos">}</span>
-                  <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">mute</span><span class="pl-kos">(</span><span class="pl-s1">run</span><span class="pl-kos">)</span></pre></div>
-                  <p>Or, you can create new function</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">mute</span><span class="pl-kos">(</span><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-                    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"Ran!"</span><span class="pl-kos">)</span>
-                  <span class="pl-kos">}</span><span class="pl-kos">)</span></pre></div>
-                  <p>Both of the functions will have <strong>NO</strong> output.</p>
-                  <p>If you have a longer function, and want to display some kind of message while it is running, use the <code>muter.write</code> function.</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">write</span><span class="pl-kos">(</span><span class="pl-s">"Written!"</span><span class="pl-kos">)</span></pre></div>
-                  <p>You <strong>WILL</strong> see the output of that command.</p>
-                  <h3>
-                  <a id="user-content-minifying-and-combining-javascript-files" class="anchor" href="#minifying-and-combining-javascript-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minifying and combining JavaScript files</h3>
-                  <p>To minify javascript, use the <code>tools.minify</code> function</p>
-                  <div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">minify</span><span class="pl-kos">(</span><span class="pl-kos">[</span>
-                    <span class="pl-s">"File Path"</span><span class="pl-kos">,</span>
-                    <span class="pl-s">"File Path"</span>
-                  <span class="pl-kos">]</span><span class="pl-kos">)</span></pre></div>
-                  <h3>
-                  <a id="user-content-the-fun-commands" class="anchor" href="#the-fun-commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The <code>fun</code> commands</h3>
-                  <p>The <code>fun</code> commands are fun little tricks, there is a <code>fun.matrix()</code> function and a <code>fun.snow()</code> function. Both can be stopped with <code>fun.stop()</code>.</p>
-                  <p>The <code>fun.snow()</code> function creates a snowstorm, and the <code>fun.matrix()</code> creates a matrix (not the math kind.)</p>
+<h2>
+<a id="user-content-using" class="anchor" href="#using" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using</h2>
+<p>The following information assumes you have the following code in your scripts</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-s1">tools</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"terminaltools"</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-rendering-images" class="anchor" href="#rendering-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rendering Images</h3>
+<p>To render an image, you should use the <code>image</code> function. The function takes 1 parameter, which is the path to the image. The function is <a href="https://www.merriam-webster.com/dictionary/asynchronous" rel="nofollow">asynchronous</a>. and returns the image as a <code>String</code>. After running the function, you can display the image using <code>console.log</code>. (You can use a URL for this function)</p>
+<h4>
+<a id="user-content-example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h4>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">image</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">image</span><span class="pl-kos">(</span><span class="pl-s">"image.png"</span><span class="pl-kos">)</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">image</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-playing-videos" class="anchor" href="#playing-videos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Playing Videos</h3>
+<p>Video playing contains 4 different functions. The first 2 or <code>framify</code> and <code>render</code>. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run <code>framify</code>. The third function is called <code>runall</code>, and it runs <code>framify</code>, then <code>render</code>. Now, the 4th function is a special version of <code>render</code> called <code>advrender</code>. (Setting an FPS on the <code>render</code> and <code>advrender</code> functions are optional.)
+<em><strong>NOTE</strong></em> Using the <em><strong>NEW</strong></em> <code>buffer</code> function, none of the above is required.</p>
+<h4>
+<a id="user-content-1-framify" class="anchor" href="#1-framify" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. framify</h4>
+<p>The <code>framify</code> function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. <em><strong>NOTE</strong></em>: Please create a <code>frames</code> folder in the current working directory before running.</p>
+<h5>
+<a id="user-content-example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">framify</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">)</span></pre></div>
+<p>(You then end up with a folder named <code>frames</code> in the current working directory)</p>
+<h4>
+<a id="user-content-2-render" class="anchor" href="#2-render" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. render</h4>
+<p>The <code>render</code> function takes no parameter and <em><strong>MUST</strong></em> be run from the same directory that contains the <code>frames</code> folder.</p>
+<h5>
+<a id="user-content-example-2" class="anchor" href="#example-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">render</span><span class="pl-kos">(</span><span class="pl-c">/* FPS Optional */</span><span class="pl-kos">)</span></pre></div>
+<h4>
+<a id="user-content-3-runall" class="anchor" href="#3-runall" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. runall</h4>
+<p>The <code>runall</code> function runs both of the functions.</p>
+<h5>
+<a id="user-content-example-3" class="anchor" href="#example-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h5>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">runall</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">)</span></pre></div>
+<h4>
+<a id="user-content-4-advrender" class="anchor" href="#4-advrender" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. advrender</h4>
+<p>The <code>advrender</code> function renders the frames in 2 parts, first it pre-renders <em><strong>ALL</strong></em> the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during</p>
+<h5>
+<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h5>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">await</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">video</span><span class="pl-kos">.</span><span class="pl-en">advrender</span><span class="pl-kos">(</span><span class="pl-c">/* FPS Optional */</span><span class="pl-kos">)</span></pre></div>
+<h4>
+<a id="user-content-5-buffer" class="anchor" href="#5-buffer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. buffer</h4>
+<p>The <code>buffer</code> function is a special, new function that does <strong>NOT</strong> require framifying. The <code>buffer</code> function uses the <code>ffmpeg</code> command directly and outputs it into <code>arraybuffers</code>. This rendering method has the parameter <code>lpf</code>, which is needed due to the increased frame speed. The <code>lpf</code> parameter stands for <code>Length Per Frame</code>, it is in milliseconds, and <code>fps</code> will not work. It also takes the video as the first parameter.</p>
+<h5>
+<a id="user-content-examples-1" class="anchor" href="#examples-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h5>
+<div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">buffer</span><span class="pl-kos">(</span><span class="pl-s">"sample.mp4"</span><span class="pl-kos">,</span><span class="pl-c1">100</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-loader" class="anchor" href="#loader" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loader</h3>
+<p>There are currently 2 loaders available.</p>
+<h4>
+<a id="user-content-1-line" class="anchor" href="#1-line" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. line</h4>
+<p>First, create a new instance of <code>loader.line</code></p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">line</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">line</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+<h4>
+<a id="user-content-2-pinwheel" class="anchor" href="#2-pinwheel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. pinwheel</h4>
+<p>First, create a new instance of <code>loader.pinwheel</code></p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">pinwheel</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">pinwheel</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+<h4>
+<a id="user-content-3-dots" class="anchor" href="#3-dots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Dots</h4>
+<p>First, create a new instance of <code>loader.dots</code></p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">dots</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">dots</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<p>Then, you can start and end the loader using <code>start()</code> and <code>stop()</code></p>
+<h4>
+<a id="user-content-examples-2" class="anchor" href="#examples-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h4>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">line</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">line</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s1">line</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
+<span class="pl-s1">line</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">pinwheel</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">pinwheel</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s1">pinwheel</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
+<span class="pl-s1">pinwheel</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-s1">dots</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">loader</span><span class="pl-kos">.</span><span class="pl-c1">dots</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s1">dots</span><span class="pl-kos">.</span><span class="pl-en">start</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-s">"FUNCTION FUNCTION FUNCTION FUNCTION"</span>
+<span class="pl-s1">dots</span><span class="pl-kos">.</span><span class="pl-en">end</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-connect-to-a-server" class="anchor" href="#connect-to-a-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connect to a server</h3>
+<p>To connect a server, first make a new instance of the <code>server</code> class</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-v">Client</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">server</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<p>Next, connect to the server using</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-v">Client</span><span class="pl-kos">.</span><span class="pl-en">connect</span><span class="pl-kos">(</span><span class="pl-s1">host</span><span class="pl-kos">,</span> <span class="pl-s1">ip</span><span class="pl-kos">)</span></pre></div>
+<p>If the host is not specified, it will default to <code>towel.blinkenlights.nl</code>, and if the port is not specifed, it will default to <code>23</code></p>
+<p>Now, you can write messages using the <code>write</code> function</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-v">Client</span><span class="pl-kos">.</span><span class="pl-en">write</span><span class="pl-kos">(</span><span class="pl-s">"Hello!"</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-muting-a-function" class="anchor" href="#muting-a-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Muting a function</h3>
+<p>You can mute a function, if you don't want the output to be displayed to the user. You can also write output during the function.
+To mute a function, run the <code>muter.mute</code> function. (Replace <code>function</code> with the function name)</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">run</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"Ran!"</span><span class="pl-kos">)</span>
+<span class="pl-kos">}</span>
+<span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">mute</span><span class="pl-kos">(</span><span class="pl-s1">run</span><span class="pl-kos">)</span></pre></div>
+<p>Or, you can create new function</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">mute</span><span class="pl-kos">(</span><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"Ran!"</span><span class="pl-kos">)</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span></pre></div>
+<p>Both of the functions will have <strong>NO</strong> output.</p>
+<p>If you have a longer function, and want to display some kind of message while it is running, use the <code>muter.write</code> function.</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-c1">muter</span><span class="pl-kos">.</span><span class="pl-en">write</span><span class="pl-kos">(</span><span class="pl-s">"Written!"</span><span class="pl-kos">)</span></pre></div>
+<p>You <strong>WILL</strong> see the output of that command.</p>
+<h3>
+<a id="user-content-minifying-and-combining-javascript-files" class="anchor" href="#minifying-and-combining-javascript-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minifying and combining JavaScript files</h3>
+<p>To minify javascript, use the <code>tools.minify</code> function</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-s1">tools</span><span class="pl-kos">.</span><span class="pl-en">minify</span><span class="pl-kos">(</span><span class="pl-kos">[</span>
+  <span class="pl-s">"File Path"</span><span class="pl-kos">,</span>
+  <span class="pl-s">"File Path"</span>
+<span class="pl-kos">]</span><span class="pl-kos">)</span></pre></div>
+<h3>
+<a id="user-content-the-fun-commands" class="anchor" href="#the-fun-commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The <code>fun</code> commands</h3>
+<p>The <code>fun</code> commands are fun little tricks, there is a <code>fun.matrix()</code> function and a <code>fun.snow()</code> function. Both can be stopped with <code>fun.stop()</code>.</p>
+<p>The <code>fun.snow()</code> function creates a snowstorm, and the <code>fun.matrix()</code> creates a matrix (not the math kind.)</p>
                 </article>
             </div>
         </div>
