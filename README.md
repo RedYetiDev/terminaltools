@@ -28,17 +28,28 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 7. The `fun` command
 
-  1. Create a Matrix
+    1. Create a Matrix
 
-  ![Create a Matrix](https://user-images.githubusercontent.com/38299977/111515495-3bb41a80-8729-11eb-9b7b-b89a50fdcd81.gif)
+    ![Create a Matrix](https://user-images.githubusercontent.com/38299977/111515495-3bb41a80-8729-11eb-9b7b-b89a50fdcd81.gif)
 
-  2. Create a snowstorm
+    2. Create a snowstorm
 
-  ![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
+    ![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
+
+8. Use the unix `banner` command
+```
+#     # ####### #       #       #######
+#     # #       #       #       #     #
+#     # #       #       #       #     #
+####### #####   #       #       #     #
+#     # #       #       #       #     #
+#     # #       #       #       #     #
+#     # ####### ####### ####### #######
+```
 
 ## Installation
 First, install the `terminaltools` package, using the following command
-```sh
+```bash
 npm i terminaltools
 ```
 Next, add `terminaltools` to your scripts using the `require` command.
@@ -205,3 +216,24 @@ tools.minify([
 The `fun` commands are fun little tricks, there is a `fun.matrix()` function and a `fun.snow()` function. Both can be stopped with `fun.stop()`.
 
 The `fun.snow()` function creates a snowstorm, and the `fun.matrix()` creates a matrix (not the math kind.)
+
+### The `banner` command
+The `banner` is a function that takes one input. The input is the string<sup><a href="#footnote1">1</a></sup> to turn into a banner.
+
+```js
+var banner = tools.banner("Hello")
+console.log(banner)
+// Outputs below
+#     # ####### #       #       #######
+#     # #       #       #       #     #
+#     # #       #       #       #     #
+####### #####   #       #       #     #
+#     # #       #       #       #     #
+#     # #       #       #       #     #
+#     # ####### ####### ####### #######
+```
+
+
+Footnotes
+---
+<sup><a id="footnote1">1</a></sup>: Special characters created using the <kbd>alt/option</kbd> key are not supported.
