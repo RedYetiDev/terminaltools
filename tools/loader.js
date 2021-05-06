@@ -93,6 +93,38 @@ class Dots {
     this.rl.close();
   }
 }
+class Colorful {
+  async #_start(item) {
+    for (var i = 0; i < (process.stdout.columns / 2); i++) {
+      if (!this.isLoading) return;
+      process.stdout.write(item)
+      await delay(100)
+    }
+    process.stdout.write("\u001B[F")
+    process.stdout.write("\u001B[E")
+    return;
+  }
+
+  async start(items) {
+    if (!items instanceof Array) throw new Error("Items must be an instance of array")
+
+    this.isLoading = true
+    while (this.isLoading) {
+      for (var i = 0; i < items.length; i++) {
+        await this.#_start(items[i])
+        if (!this.isLoading) break;
+      }
+    }
+  }
+  end() {
+    this.isLoading = false
+  }
+  async loadWithDefault() {
+    await load(["🟩", "🟨", "🟧", "🟥"])
+  }
+}
+
 module.exports.line = Line
 module.exports.pinwheel = Pinwheel
 module.exports.dots = Dots
+module.exports.colorful = Colorful

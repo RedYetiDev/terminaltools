@@ -2,6 +2,7 @@ var ffmpeg = require("ffmpeg")
 var fs = require("fs")
 var path = require("path")
 var specialrender = require("./lib/specialimage")
+var exec = require("util").promisify(require("child_process").exec)
 var fps;
 const delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
 // Video Rendering
@@ -90,7 +91,7 @@ async function buffer(video, lpf) {
     }
   }
   for (var i in framebuffers) {
-    var frame = await read(framebuffers[i])
+    var frame = await specialrender(framebuffers[i])
     process.stdout.write("\033[0;0H" + frame)
     await delay(lpf || 100)
   }
@@ -106,4 +107,4 @@ module.exports.render = render
 module.exports.advrender = advrender
 module.exports.framify = framify
 module.exports.runall = full
-module.exports.buffer_render = buffer
+module.exports.buffer = buffer

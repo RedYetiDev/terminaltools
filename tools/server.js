@@ -20,7 +20,7 @@ class Client {
       this.rl.write(ansiEscapes.eraseLines(process.stdout.rows))
       console.log(data.toString())
     });
-    client.on('end', () => {
+    this.client.on('end', () => {
       console.log('disconnected from server');
       this.rl.output.end();
       this.rl.pause();

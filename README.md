@@ -75,7 +75,8 @@ console.log(image)
 
 ### Playing Videos
 Video playing contains 4 different functions. The first 2 or `framify` and `render`. They are split into 2 different functions for speed reasons. Becuase, you can already have frames ready, and have no need to run `framify`. The third function is called `runall`, and it runs `framify`, then `render`. Now, the 4th function is a special version of `render` called `advrender`. (Setting an FPS on the `render` and `advrender` functions are optional.)
-***NOTE*** Using the ***NEW*** `buffer` function, none of the above is required.
+
+***NOTE*** Using the `buffer` function, none of the above is required.
 
 #### 1. framify
 The `framify` function takes a video input and converts it to a folder full of frames. The folder is located in the current working directory. ***NOTE***: Please create a `frames` folder in the current working directory before running.
@@ -103,15 +104,15 @@ await tools.video.runall("sample.mp4")
 ```
 
 #### 4. advrender
-The `advrender` function renders the frames in 2 parts, first it pre-renders ***ALL*** the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during
+The `advrender` function renders the frames in 2 parts, first it pre-renders ***ALL*** the frames, then it renders them. The reason for this is it increases the speed of the video, by processing the frames before playback, instead of during the playback.
 
 ##### Examples
 ```js
 await tools.video.advrender(/* FPS Optional */)
 ```
 
-#### 5. buffer
-  The `buffer` function is a special, new function that does **NOT** require framifying. The `buffer` function uses the `ffmpeg` command directly and outputs it into `arraybuffers`. This rendering method has the parameter `lpf`, which is needed due to the increased frame speed. The `lpf` parameter stands for `Length Per Frame`, it is in milliseconds, and `fps` will not work. It also takes the video as the first parameter.
+#### 5. buffer_render
+  The `buffer` function is a special function that does **NOT** require framifying. The `buffer` function uses the `ffmpeg` command directly and outputs it into `arraybuffers`. Instead of optionally specifying the `FPS`, you need to specify the `lpf`, which stands for `Length Per Frame`. The `lpf` is the time in milliseconds that each frame will show.
 
 ##### Examples
 ```js
