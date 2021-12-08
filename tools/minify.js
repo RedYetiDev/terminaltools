@@ -12,7 +12,7 @@ async function minify(files) {
       joined.push(item)
     }
   });
-  joined = joined.join("\n").replaceAll(/([^{;,\[])(?!\n])\n/g,"$1;\n").replaceAll(/(?<!var|let|const|async|function|await)\s(?=([^"]*"[^"]*")*[^"]*$)/g,"").replaceAll(/\t(?=([^"]*"[^"]*")*[^"]*$)/g,"")
+  joined = joined.join("\n").replace(/([^{;,\[])(?!\n])\n/g,"$1;\n").replace(/(?<!var|let|const|async|function|await)\s(?=([^"]*"[^"]*")*[^"]*$)/g,"").replace(/\t(?=([^"]*"[^"]*")*[^"]*$)/g,"")
   return joined
 }
 module.exports = minify

@@ -5,9 +5,9 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 ![Render Images](https://user-images.githubusercontent.com/38299977/110391296-47bb2080-8035-11eb-83f2-43d66d174dbe.png)
 
-2. Play Videos (Glitches Fixed!)
+2. Play Videos
 
-![Play Videos (Glitches Fixed!)](https://user-images.githubusercontent.com/38299977/110550349-828a8a80-8101-11eb-89cb-c5e98ad2750a.gif)
+![Play Videos](https://user-images.githubusercontent.com/38299977/110550349-828a8a80-8101-11eb-89cb-c5e98ad2750a.gif)
 
 3. Create a loader
 
@@ -22,7 +22,7 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
 ![Connect to a server](https://user-images.githubusercontent.com/38299977/110807660-449c7c00-8251-11eb-8501-275960d8b9f3.png)
 
-5. Mute a function (No image, because no output!)
+5. Mute a function
 
 6. Minify and compile JavaScript Files
 
@@ -36,6 +36,7 @@ Welcome to the terminal tools package. This package allows you to do some specia
 
     ![Create a snowstorm](https://user-images.githubusercontent.com/38299977/111515486-3951c080-8729-11eb-8929-90d0cd23b365.gif)
 
+
 8. Use the unix `banner` command
 ```
 #     # ####### #       #       #######
@@ -46,6 +47,8 @@ Welcome to the terminal tools package. This package allows you to do some specia
 #     # #       #       #       #     #
 #     # ####### ####### ####### #######
 ```
+
+9. Add a delay to script
 
 ## Installation
 First, install the `terminaltools` package, using the following command
@@ -214,6 +217,7 @@ tools.minify([
 ```
 
 ### The `fun` commands
+
 The `fun` commands are fun little tricks, there is a `fun.matrix()` function and a `fun.snow()` function. Both can be stopped with `fun.stop()`.
 
 The `fun.snow()` function creates a snowstorm, and the `fun.matrix()` creates a matrix (not the math kind.)
@@ -234,6 +238,13 @@ console.log(banner)
 #     # ####### ####### ####### #######
 ```
 
+### The `delay` command
+The `delay` command adds delay to a script using promises. This function accepts one arguemnt, the delay time in `ms`. (One second is 1000ms)
+```js
+console.log('Hello, Wait 3 seconds')
+await tools.delay(3000) /* 3000ms = 3 Seconds */
+console.log('Its been 3 seconds!')
+```
 
 Footnotes
 ---

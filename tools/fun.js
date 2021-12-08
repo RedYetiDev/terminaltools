@@ -12,7 +12,7 @@ async function matrix(letters=null) {
     var line = 0
     await delay(100)
     var random_col = Math.floor(Math.random() * columns)
-    var letter = Math.floor(Math.random() * 2)
+    var letter = letters[Math.floor(Math.random() * letters.length)] || Math.floor(Math.random() * 2)
     cols[random_col] = 0;
     for (col in cols) {
       var rnum = Math.floor(Math.random() * 20);
@@ -67,9 +67,28 @@ async function snow() {
     await delay(100)
   }
 }
+
+function rainbow(message) {
+  var c = [
+    30, 31, 32, 33, 34, 35,
+    36, 37, 90, 91, 92, 93,
+    94, 95, 96, 97
+  ]
+  var m = [];
+  message.split('').forEach(l => {
+    color = c[Math.floor(Math.random() * c.length)]
+    m.push("\033[" + color + "m" + l + "\033[0m")
+  })
+  console.log(m.join(''))
+};
 module.exports.snow = snow
 module.exports.matrix = matrix
-module.exports.stop = () => {
-  dosnow = false
-  domatrix = false
+module.exports = {
+  stop: () => {
+    dosnow = false
+    domatrix = false
+  },
+  snow: snow,
+  matrix: matrix,
+  rainbow: rainbow
 }

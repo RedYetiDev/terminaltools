@@ -15,3 +15,4 @@ module.exports.minify = minify
 module.exports.muter = mute
 module.exports.fun = fun
 module.exports.banner = banner
+module.exports.delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}

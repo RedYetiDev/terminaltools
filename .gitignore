@@ -3,3 +3,5 @@ node_modules
 frames
 sample.mp4
 .npmignore
+test.js
+test.perl
