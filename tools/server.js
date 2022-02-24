@@ -5,6 +5,13 @@ class Client {
     this.host = null
     this.client = null
     this.rl = null
+    this.on = {
+      'data': function() {},
+      'end': function() {},
+    };
+  }
+  on(event, callback) {
+    this.on[event] = callback;
   }
   connect(host, port) {
     this.rl = readline.createInterface({
@@ -17,11 +24,10 @@ class Client {
       host: host || "towel.blinkenlights.nl"
     })
     this.client.on('data', (data) => {
-      this.rl.write(ansiEscapes.eraseLines(process.stdout.rows))
-      console.log(data.toString())
+      this.on["data"](data);
     });
     this.client.on('end', () => {
-      console.log('disconnected from server');
+      this.on["end"]();
       this.rl.output.end();
       this.rl.pause();
       this.rl.close();

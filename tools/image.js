@@ -1,5 +1,4 @@
 const delay = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
-const readline = require("readline")
 const Jimp = require("jimp")
 function rgbToAnsi256(r, g, b) {
     if (r === g && g === b) {

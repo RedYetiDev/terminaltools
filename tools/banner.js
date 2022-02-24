@@ -829,6 +829,14 @@ function write(input) {
       case "#":
         chars[i] = char_hash;
         break;
+      case "+":
+        chars[i] = char_plus
+        break;
+      case "|":
+        chars[i] = char_pipe
+        break;
+      case "_":
+        chars[i] = char_undr
       default:
         try {
           chars[i] = eval(`char_${item.toLowerCase()}`)

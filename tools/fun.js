@@ -81,8 +81,7 @@ function rainbow(message) {
   })
   console.log(m.join(''))
 };
-module.exports.snow = snow
-module.exports.matrix = matrix
+
 module.exports = {
   stop: () => {
     dosnow = false
