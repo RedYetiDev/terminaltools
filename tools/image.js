@@ -27,15 +27,18 @@ function rgbToAnsi256(r, g, b) {
 /**
  * Returns a console.log-able string of the image
  * @param {(Buffer|String)} img The image to render, as a Buffer or a file path
+ * @param {number} [x=process.stdout.columns] The width of the image
+ * @param {number} [y=process.stdout.rows] The height of the image
  * @returns {Promise<String>} The image, as a string
  * @example
  * renderImage("image.png").then(console.log);
  */
-async function renderImage(img) {
+async function renderImage(img, x, y) {
     const {data} = await sharp(img)
-        .resize(process.stdout.columns, process.stdout.rows, {
+        .resize(x || process.stdout.columns, y || process.stdout.rows, {
             fit: "contain",
         })
+        .removeAlpha()
         .raw()
         .toBuffer({ resolveWithObject: true })
 
