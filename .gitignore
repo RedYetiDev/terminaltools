@@ -1,7 +1,4 @@
-node_modules
 .DS_Store
-frames
-sample.mp4
 .npmignore
-test.*
-tools/emacs
+test
+node_modules

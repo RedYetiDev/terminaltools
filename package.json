@@ -1,6 +1,6 @@
 {
   "name": "terminaltools",
-  "version": "2.1.0",
+  "version": "3.0.0-beta",
   "description": "terminaltools allows you to do tricks in the terminal like play videos, show images and more.",
   "main": "tools.js",
   "repository": {
@@ -53,8 +53,7 @@
   },
   "homepage": "https://tt.js.org",
   "dependencies": {
-    "ansi-escapes": "^4.3.1",
-    "ffmpeg": "^0.0.4",
-    "jimp": "^0.16.1"
+    "ffmpeg-static": "^5.1.0",
+    "sharp": "^0.32.1"
   }
 }
