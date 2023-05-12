@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Terminal Tools: banner.js</title>
+    
+      <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
+    
+    <link type="text/css" rel="stylesheet" href="styles/styles.css">
+    
+</head>
+<body>
+
+<header class="layout-header">
+  
+  <h1>
+    <a href="./index.html">
+      Terminal Tools
+    </a>
+  </h1>
+  <nav class="layout-nav">
+    <ul><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Banner.html">Banner</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#getChar">getChar</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#load">load</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Mute.html">Mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#clearOutput">clearOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#getOutput">getOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#mute">mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#unmute">unmute</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Snowfall.html">Snowfall</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.stop">stop</a></span></li></ul><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rainbow">rainbow</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderImage">renderImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderVideo">renderVideo</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rgbToAnsi256">rgbToAnsi256</a></span></li>
+  </nav>
+</header>
+
+
+<main class="layout-main  layout-content--source">
+  <div class="container">
+    <p class="page-kind">source</p>
+    <h1 class="page-title">banner.js</h1>
+    
+
+
+
+    
+
+<section>
+    <article>
+        <pre id="source" class="source-page line-numbers"><code class="language-js">const fs = require("fs");
+const zlib = require("zlib");
+const path = require("path");
+// The Unifont .hex.gz file is in extras/unifont.hex.gz
+/**
+ * @class Banner
+ */
+class Banner {
+    /**
+     * Load the hex file
+     * @param {String} [hexFilePath="extras/unifont-15.0.01.hex.gz"] 
+     * @example
+     * const banner = new Banner();
+     * banner.load();
+     */
+    load(hexFilePath) {
+        if (!hexFilePath) {
+            // ../extras/unifont-15.0.01.hex.gz
+            // TODO: Check the relativity of this path
+            hexFilePath = path.resolve(__dirname, "../extras/unifont-15.0.01.hex.gz");
+        }
+        this.hexFile = fs.readFileSync(hexFilePath);
+        // is it gzipped?
+        if (this.hexFile[0] === 0x1f &amp;&amp; this.hexFile[1] === 0x8b) {
+            this.hexFile = zlib.gunzipSync(this.hexFile);
+        }
+    }
+    /**
+     * Get the character from the hex file
+     * @param {String} char 
+     * @returns {String} The character in the hex file
+     * @example
+     * const banner = new Banner();
+     * banner.load();
+     * banner.getChar("A");
+     */
+    getChar(char) {
+        const charCode = char.charCodeAt(0);
+        const hexCode = charCode.toString(16).padStart(4, "0").toUpperCase();
+        const hexIndex = this.hexFile.indexOf(`${hexCode}:`);
+        if (hexIndex === -1) {
+            // Unicode Error Character: U+FFFD (�)
+            return this.getChar("�")
+        }
+        let hexLine = this.hexFile.slice(hexIndex + 5, this.hexFile.indexOf("\n", hexIndex)).toString();
+        hexLine = Buffer.from(hexLine, "hex").toString("binary");
+        hexLine = [...hexLine].map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+        const width = hexLine.length / 16;
+        hexLine = hexLine.replace(new RegExp(`(.{${width}})`, 'g'), '$1\n');
+        hexLine = hexLine.replace(/[01]/g, c => c === '0' ? ' ' : '█');
+        return hexLine;
+    }
+    /**
+     * Prints the string to the console, in the form of a banner
+     * @param {String} string The string to write
+     * @example
+     * const banner = new Banner();
+     * banner.load();
+     * banner.write("Hello, World!");
+     */
+    write(string) {
+        let chars = string.split("").map(this.getChar.bind(this));
+        let height = chars[0].split("\n").length;
+
+        let output = "";
+        for (let i = 0; i &lt; height; i++) {
+            output += chars.map(c => c.split("\n")[i]).join("") + "\n";
+        }
+
+        console.log(output);
+    }
+}
+
+module.exports = Banner;</code></pre>
+    </article>
+</section>
+
+
+
+
+  </div>
+</main>
+
+<footer class="layout-footer">
+  <div class="container">
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 12 2023 08:00:18 GMT-0400 (Eastern Daylight Time)
+  </div>
+</footer>
+
+
+
+<script src="scripts/prism.dev.js"></script>
+</body>
+</html>

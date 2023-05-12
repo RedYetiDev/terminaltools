@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Terminal Tools: video.js</title>
+    
+      <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
+    
+    <link type="text/css" rel="stylesheet" href="styles/styles.css">
+    
+</head>
+<body>
+
+<header class="layout-header">
+  
+  <h1>
+    <a href="./index.html">
+      Terminal Tools
+    </a>
+  </h1>
+  <nav class="layout-nav">
+    <ul><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Banner.html">Banner</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#getChar">getChar</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#load">load</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Mute.html">Mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#clearOutput">clearOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#getOutput">getOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#mute">mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#unmute">unmute</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Snowfall.html">Snowfall</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.stop">stop</a></span></li></ul><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rainbow">rainbow</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderImage">renderImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderVideo">renderVideo</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rgbToAnsi256">rgbToAnsi256</a></span></li>
+  </nav>
+</header>
+
+
+<main class="layout-main  layout-content--source">
+  <div class="container">
+    <p class="page-kind">source</p>
+    <h1 class="page-title">video.js</h1>
+    
+
+
+
+    
+
+<section>
+    <article>
+        <pre id="source" class="source-page line-numbers"><code class="language-js">const ffmpeg = require('ffmpeg-static');
+const cp = require('child_process');
+/**
+ * Convert a video to ASCII
+ * @param {String} videoPath The file path to the video
+ * @returns {Promise&lt;String[]>} The video, as an array of frames
+ * @example
+ * renderVideo("video.mp4").then(console.log);
+ */
+async function renderVideo(videoPath) {
+    const ffmpegProcess = await cp.spawnSync(ffmpeg, [
+        '-i', videoPath,
+        '-f', 'image2pipe',
+        '-pix_fmt', 'rgb24',
+        '-s', `${process.stdout.columns}x${process.stdout.rows}`,
+        '-vcodec', 'rawvideo', '-'
+    ]);
+
+    const bytesPerFrame = process.stdout.columns * process.stdout.rows * 3;
+
+    const frames = ffmpegProcess.stdout;
+    const mappedFrames = [];
+
+    for (let i = 0; i &lt; frames.length; i += bytesPerFrame) {
+        const frame = frames.subarray(i, i + bytesPerFrame);
+        let mFrame = [];
+        for (let j = 0; j &lt; frame.length; j += 3) {
+            const r = frame[j];
+            const g = frame[j + 1];
+            const b = frame[j + 2];
+            mFrame.push(`\x1B[38;2;${r};${g};${b}m\u2588`);
+        }
+        mappedFrames.push(mFrame.join(''));
+    }
+
+    return mappedFrames;
+}
+
+module.exports = renderVideo;</code></pre>
+    </article>
+</section>
+
+
+
+
+  </div>
+</main>
+
+<footer class="layout-footer">
+  <div class="container">
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 12 2023 08:00:19 GMT-0400 (Eastern Daylight Time)
+  </div>
+</footer>
+
+
+
+<script src="scripts/prism.dev.js"></script>
+</body>
+</html>

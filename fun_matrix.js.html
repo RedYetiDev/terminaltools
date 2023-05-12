@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Terminal Tools: fun/matrix.js</title>
+    
+      <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
+    
+    <link type="text/css" rel="stylesheet" href="styles/styles.css">
+    
+</head>
+<body>
+
+<header class="layout-header">
+  
+  <h1>
+    <a href="./index.html">
+      Terminal Tools
+    </a>
+  </h1>
+  <nav class="layout-nav">
+    <ul><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Banner.html">Banner</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#getChar">getChar</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#load">load</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Mute.html">Mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#clearOutput">clearOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#getOutput">getOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#mute">mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#unmute">unmute</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Snowfall.html">Snowfall</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.stop">stop</a></span></li></ul><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rainbow">rainbow</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderImage">renderImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderVideo">renderVideo</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rgbToAnsi256">rgbToAnsi256</a></span></li>
+  </nav>
+</header>
+
+
+<main class="layout-main  layout-content--source">
+  <div class="container">
+    <p class="page-kind">source</p>
+    <h1 class="page-title">fun/matrix.js</h1>
+    
+
+
+
+    
+
+<section>
+    <article>
+        <pre id="source" class="source-page line-numbers"><code class="language-js">class Matrix {
+    static domatrix = false;
+    /**
+     * Start the matrix
+     * @param {String[]} letters The letters to use
+     * @static
+     * @example
+     * Matrix.start(["0", "1"]);
+     */
+    static start(letters = null) {
+        this.#start(letters); // Why? If you await the #start method, it will be awaited forever (A long time).
+    }
+
+    static async #start(letters = null) {
+        this.domatrix = true;
+        console.clear();
+        console.log('\x1b[1;40m');
+        const rows = process.stdout.rows;
+        const columns = process.stdout.columns;
+        const cols = [];
+
+        if (letters.find(l => l.length > 1)) throw new Error("Letters must be one character long");
+
+        while (this.domatrix) {
+            const randomCol = Math.floor(Math.random() * columns);
+            const letter = letters?.[Math.floor(Math.random() * letters.length)] || Math.floor(Math.random() * 2);
+            cols[randomCol] = 0;
+            for (const col in cols) {
+                const randomNum = Math.floor(Math.random() * 20);
+
+                let line;
+                if (cols[col] &lt; 0) {
+                    line = -cols[col];
+                    cols[col] -= 1;
+                    const subline = -cols[col] + 1;
+
+                    console.log(`\x1b[${line};${col}H \x1b[0;0H`);
+                    if (subline >= rows || randomNum &lt; 1) {
+                        cols[col] = 0;
+                    }
+                } else {
+                    line = cols[col]++;
+                    if (randomNum &lt; 3) {
+                        console.log(`\x1b[${line};${col}H\x1b[1;32m${letter}\x1b[0m`);
+                    } else {
+                        console.log(`\x1b[${line};${col}H\x1b[2;32m${letter}\x1b[0m`);
+                    }
+                    console.log(`\x1b[${line + 1};${col}H\x1b[37m${letter}\x1b[0;0H\x1b[0m`);
+
+                    if (cols[col] >= rows &amp;&amp; randomNum &lt; 2) {
+                        cols[col] = 0;
+                    } else if (cols[col] >= rows) {
+                        cols[col] = -1;
+                    }
+                }
+            }
+            await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+    }
+
+    /**
+     * Stop the matrix
+     * @static
+     * @example
+     * Matrix.stop();
+     */
+    static stop() {
+        this.domatrix = false;
+        console.clear();
+    }
+}
+
+module.exports = Matrix;</code></pre>
+    </article>
+</section>
+
+
+
+
+  </div>
+</main>
+
+<footer class="layout-footer">
+  <div class="container">
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 12 2023 08:00:18 GMT-0400 (Eastern Daylight Time)
+  </div>
+</footer>
+
+
+
+<script src="scripts/prism.dev.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Terminal Tools: </title>
+    
+      <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
+    
+    <link type="text/css" rel="stylesheet" href="styles/styles.css">
+    
+</head>
+<body>
+
+<header class="layout-header">
+  
+  <h1>
+    <a href="./index.html">
+      Terminal Tools
+    </a>
+  </h1>
+  <nav class="layout-nav">
+    <ul><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Banner.html">Banner</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#getChar">getChar</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#load">load</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Banner.html#write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Mute.html">Mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#clearOutput">clearOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#getOutput">getOutput</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#mute">mute</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Mute.html#unmute">unmute</a></span></li><li class="nav-heading"><span class="nav-item-type type-class" title="class">C</span><span class="nav-item-name is-class"><a href="Snowfall.html">Snowfall</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="Snowfall.html#.stop">stop</a></span></li></ul><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rainbow">rainbow</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderImage">renderImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#renderVideo">renderVideo</a></span></li><li class="nav-item"><span class="nav-item-type type-function" title="function">F</span><span class="nav-item-name is-function"><a href="global.html#rgbToAnsi256">rgbToAnsi256</a></span></li>
+  </nav>
+</header>
+
+
+<main class="layout-main ">
+  <div class="container">
+    <p class="page-kind"></p>
+    <h1 class="page-title"></h1>
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section class="readme">
+        <article><div align="center">
+<h1>TerminalTools</h1>
+<h3>Version 3.0.0</h3>
+<p><strong>Tools for your terminal</strong></p>
+</div>
+<hr>
+<p><strong>TerminalTools</strong> provides little bits of fun for your average terminal</p>
+<h2>Installation</h2>
+<p>TerminalTools is a <a href="https://nodejs.org/en/">Node.js</a> module available through the <a href="https://www.npmjs.com/">npm registry</a>. Installation is done using the <a href="https://docs.npmjs.com/getting-started/installing-npm-packages-locally">npm install</a> command:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm install terminaltools
+</code></pre>
+<p>You can also just add it to your <code>package.json</code> file, and it will be installed the next time you run <code>npm install</code>:</p>
+<pre class="prettyprint source lang-json"><code>{
+  &quot;dependencies&quot;: {
+    &quot;terminaltools&quot;: &quot;^3.0.0&quot;
+  }
+}
+</code></pre>
+<h2>Basic Usage</h2>
+<pre class="prettyprint source lang-js"><code>const TerminalTools = require('terminaltools');
+// renderVideo
+let frames = TerminalTools.renderVideo('path/to/video.mp4');
+let i = frames.length;
+let interval = setInterval(() => {
+  console.log(frames[i]);
+  i--;
+  if (i &lt; 0) {
+    clearInterval(interval);
+  }
+}, 1000 / 30);
+
+// renderImage
+TerminalTools.renderImage('path/to/image.png').then(console.log);
+
+// Banner
+let banner = new TerminalTools.Banner();
+banner.load();
+banner.write('Hello, World!');
+
+// Mute
+let mute = new TerminalTools.Mute();
+mute.mute();
+console.log(&quot;You won't see this&quot;);
+mute.unmute();
+console.log(&quot;You will see this&quot;);
+mute.getOutput(); // You won't see this
+mute.clearOutput();
+
+// fun.Matrix
+TerminalTools.fun.Matrix.start();
+setTimeout(() => {
+  TerminalTools.fun.Matrix.stop();
+}, 5000);
+
+// fun.Snowfall
+TerminalTools.fun.Snowfall.start();
+setTimeout(() => {
+  TerminalTools.fun.Snowfall.stop();
+}, 5000);
+
+// fun.Rainbow
+TerminalTools.fun.Rainbow(&quot;Hello, World!&quot;);
+</code></pre>
+<p><em>For API usage, and more specific examples, refer to the <a href="https://tt.js.org">API</a>.</em></p>
+<h2>Contributing</h2>
+<p>To help with the development of TerminalTools, you can contribute to the project by submitting issues, pull requests, or shooting me an email at <a href="mailto:redyetidev@gmail.com">RedYetiDev@gmail.com</a>.</p>
+<h2>License</h2>
+<p>TerminalTools is licensed under the <a href="https://choosealicense.com/licenses/mit/">MIT</a> license. This means that you can use TerminalTools in any way you want, as long as you give credit to me, the original author (<a href="https://redyetidev.github.io">RedYetiDev</a>).</p>
+<blockquote>
+<p><strong>What is &quot;as long as you give credit to me&quot;?</strong></p>
+<p>Giving credit is showing that you used TerminalTools in your project. This can be done by linking to the <a href="https://github.com/RedYetiDev/terminaltools">GitHub repository</a>, or by linking to the <a href="https://www.npmjs.com/package/terminaltools">npm package</a>.</p>
+</blockquote></article>
+    </section>
+
+
+
+
+
+
+  </div>
+</main>
+
+<footer class="layout-footer">
+  <div class="container">
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 12 2023 08:00:19 GMT-0400 (Eastern Daylight Time)
+  </div>
+</footer>
+
+
+
+<script src="scripts/prism.dev.js"></script>
+</body>
+</html>
